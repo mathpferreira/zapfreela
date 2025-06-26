@@ -1,0 +1,168 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #0077cc;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Busca */
+.busca {
+  padding: 20px;
+  text-align: center;
+}
+
+.busca input[type="text"] {
+  padding: 10px;
+  width: 80%;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 1em;
+}
+
+.busca button.botao {
+  padding: 10px 20px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.busca button.botao:hover {
+  background: #005fa3;
+}
+
+/* Destaques */
+.destaques {
+  padding: 20px;
+  text-align: center;
+}
+
+.destaques .card {
+  display: inline-block;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 200px;
+  vertical-align: top;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.destaques .card h3 {
+  margin-bottom: 10px;
+  color: #0077cc;
+}
+
+.destaques .card p {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.destaques .card button.botao {
+  width: 100%;
+  padding: 10px 0;
+}
+
+/* Categorias */
+.categorias {
+  padding: 20px;
+  text-align: center;
+}
+
+.categorias .categoria {
+  display: inline-block;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 150px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.categorias .categoria:hover {
+  background-color: #e0f0ff;
+}
+
+/* Cadastro */
+.cadastro {
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.cadastro p {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.cadastro button.botao {
+  padding: 12px 30px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.cadastro button.botao:hover {
+  background: #005fa3;
+}
+
+/* Rodapé */
+footer {
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+footer a {
+  color: #0077cc;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+  .destaques .card, .categorias .categoria {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .busca input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .busca button.botao {
+    width: 100%;
+  }
+}
