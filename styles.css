@@ -1,3 +1,11 @@
+:root {
+  --primary-color: #1e90ff;
+  --primary-hover: #0c6cd3;
+  --background-color: #f5f8fa;
+  --text-color: #2c3e50;
+  --light-gray: #f2f4f7;
+}
+
 /* Reset básico */
 * {
   box-sizing: border-box;
@@ -6,23 +14,38 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
   line-height: 1.5;
+}
+
+section {
+  padding: 40px 20px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 /* Cabeçalho */
 header {
-  background-color: #0077cc;
+  background-color: var(--primary-color);
   color: white;
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+header p {
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin-top: 8px;
+  opacity: 0.9;
 }
 
 /* Busca */
 .busca {
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
 }
 
@@ -31,27 +54,39 @@ header {
   width: 80%;
   max-width: 500px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-right: 10px;
+  font-size: 1em;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.busca input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px var(--primary-color);
+}
+
+button.botao {
+  background: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(30,144,255,0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
   font-size: 1em;
 }
 
-.busca button.botao {
-  padding: 10px 20px;
-  background: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.busca button.botao:hover {
-  background: #005fa3;
+button.botao:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 15px rgba(12,108,211,0.5);
 }
 
 /* Destaques */
 .destaques {
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
 }
 
@@ -59,16 +94,22 @@ header {
   display: inline-block;
   margin: 10px;
   padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 200px;
   vertical-align: top;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destaques .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .destaques .card h3 {
   margin-bottom: 10px;
-  color: #0077cc;
+  color: var(--primary-color);
 }
 
 .destaques .card p {
@@ -83,7 +124,7 @@ header {
 
 /* Categorias */
 .categorias {
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
 }
 
@@ -91,24 +132,27 @@ header {
   display: inline-block;
   margin: 10px;
   padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 150px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   user-select: none;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .categorias .categoria:hover {
   background-color: #e0f0ff;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* Cadastro */
 .cadastro {
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: var(--light-gray);
 }
 
 .cadastro p {
@@ -116,36 +160,24 @@ header {
   font-size: 1.1em;
 }
 
-.cadastro button.botao {
-  padding: 12px 30px;
-  background: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-.cadastro button.botao:hover {
-  background: #005fa3;
-}
-
 /* Rodapé */
 footer {
-  background-color: #f2f2f2;
+  background-color: var(--light-gray);
   text-align: center;
-  padding: 15px;
+  padding: 30px 20px;
   font-size: 0.9em;
   color: #555;
 }
 
 footer a {
-  color: #0077cc;
+  color: var(--primary-color);
+  margin: 0 15px;
   text-decoration: none;
-  margin: 0 10px;
+  transition: color 0.3s ease;
 }
 
 footer a:hover {
+  color: var(--primary-hover);
   text-decoration: underline;
 }
 
@@ -160,9 +192,33 @@ footer a:hover {
   .busca input[type="text"] {
     width: 100%;
     margin-bottom: 10px;
+    margin-right: 0;
   }
 
-  .busca button.botao {
+  button.botao {
     width: 100%;
   }
+}
+
+/* Formulário (se usar) */
+.formulario {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.formulario input,
+.formulario textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.formulario label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
 }

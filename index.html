@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ZapFreela - Conecte-se com Freelancers Locais</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,22 +16,48 @@
 
   <section class="busca">
     <h2>Buscar Freelancer</h2>
-    <input type="text" placeholder="Digite sua cidade ou serviço..." />
-    <button class="botao">Buscar</button>
+    <input
+      type="text"
+      id="inputBusca"
+      placeholder="Digite sua cidade ou serviço..."
+      autocomplete="off"
+      aria-label="Busca de freelancers"
+    />
+    <!-- Botão oculto pois a busca é instantânea -->
+    <button class="botao" id="btnBuscar" style="display:none;">Buscar</button>
   </section>
 
   <section class="destaques">
     <h2>Top Profissionais da Semana</h2>
+
     <div class="card">
       <h3>Lucas - Eletricista</h3>
       <p>⭐ 4.9 (32 avaliações)</p>
       <button class="botao">Chamar no WhatsApp</button>
     </div>
+
     <div class="card">
       <h3>Ana - Diarista</h3>
       <p>⭐ 5.0 (28 avaliações)</p>
       <button class="botao">Chamar no WhatsApp</button>
     </div>
+
+    <div class="card">
+      <h3>Pedro - Montador</h3>
+      <p>⭐ 4.7 (15 avaliações)</p>
+      <button class="botao">Chamar no WhatsApp</button>
+    </div>
+
+    <div class="card">
+      <h3>Maria - Design Gráfico</h3>
+      <p>⭐ 4.8 (22 avaliações)</p>
+      <button class="botao">Chamar no WhatsApp</button>
+    </div>
+
+    <!-- Mensagem para nenhum resultado -->
+    <p id="semResultado" style="display:none; margin-top: 20px; text-align: center; font-weight: bold; color: #cc0000;">
+      Nenhum freelancer encontrado.
+    </p>
   </section>
 
   <section class="categorias">
@@ -52,6 +79,29 @@
     <p>&copy; 2025 ZapFreela. Todos os direitos reservados.</p>
     <p><a href="#">Instagram</a> | <a href="#">Termos</a> | <a href="#">Contato</a></p>
   </footer>
+
+  <script>
+    const inputBusca = document.getElementById('inputBusca');
+    const cards = document.querySelectorAll('.destaques .card');
+    const semResultado = document.getElementById('semResultado');
+
+    inputBusca.addEventListener('input', () => {
+      const filtro = inputBusca.value.toLowerCase().trim();
+      let achou = false;
+
+      cards.forEach(card => {
+        const textoCard = card.querySelector('h3').textContent.toLowerCase();
+        if (textoCard.includes(filtro)) {
+          card.style.display = 'inline-block';
+          achou = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      semResultado.style.display = achou ? 'none' : 'block';
+    });
+  </script>
 
 </body>
 </html>
