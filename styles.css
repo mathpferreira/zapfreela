@@ -1,224 +1,256 @@
 :root {
-  --primary-color: #1e90ff;
-  --primary-hover: #0c6cd3;
-  --background-color: #f5f8fa;
-  --text-color: #2c3e50;
-  --light-gray: #f2f4f7;
+  --primary: #0077cc;
+  --primary-dark: #005fa3;
+  --background: #f5f7fa;
+  --text: #2d2d2d;
+  --white: #ffffff;
+  --light-gray: #e1e8ed;
+  --border-radius: 10px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease-in-out;
 }
 
-/* Reset básico */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.5;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--primary);
+  color: var(--white);
+  padding: 50px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.95;
 }
 
 section {
-  padding: 40px 20px;
-  max-width: 960px;
-  margin: 0 auto;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-/* Cabeçalho */
-header {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 40px 20px;
+h2 {
+  font-size: 2.4rem;
   text-align: center;
+  margin-bottom: 50px;
+  color: var(--primary);
   font-weight: 700;
-  font-size: 2rem;
-  letter-spacing: 1px;
-}
-header p {
-  font-weight: 400;
-  font-size: 1.2rem;
-  margin-top: 8px;
-  opacity: 0.9;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 /* Busca */
 .busca {
-  padding: 40px 20px;
   text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px auto;
 }
 
-.busca input[type="text"] {
-  padding: 10px;
-  width: 80%;
-  max-width: 500px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-right: 10px;
-  font-size: 1em;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.busca input[type="text"]:focus {
-  outline: none;
-  box-shadow: 0 0 5px 2px var(--primary-color);
-}
-
-button.botao {
-  background: var(--primary-color);
-  color: white;
-  border-radius: 8px;
-  padding: 12px 25px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(30,144,255,0.3);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  font-weight: 600;
-  font-size: 1em;
-}
-
-button.botao:hover {
-  background: var(--primary-hover);
-  box-shadow: 0 6px 15px rgba(12,108,211,0.5);
-}
-
-/* Destaques */
-.destaques {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.destaques .card {
-  display: inline-block;
-  margin: 10px;
-  padding: 15px;
-  border-radius: 12px;
-  width: 200px;
-  vertical-align: top;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border: 1px solid #ccc;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.destaques .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.destaques .card h3 {
-  margin-bottom: 10px;
-  color: var(--primary-color);
-}
-
-.destaques .card p {
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.destaques .card button.botao {
+.busca input {
   width: 100%;
-  padding: 10px 0;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.busca input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.botao {
+  background: var(--primary);
+  color: var(--white);
+  padding: 14px 32px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.botao:hover {
+  background: var(--primary-dark);
 }
 
 /* Categorias */
 .categorias {
-  padding: 40px 20px;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px;
 }
 
-.categorias .categoria {
-  display: inline-block;
-  margin: 10px;
-  padding: 15px;
-  border-radius: 12px;
-  width: 150px;
-  font-weight: bold;
+.categoria {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-radius);
+  padding: 18px 26px;
+  font-weight: 600;
   cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  font-size: 1rem;
   user-select: none;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.categorias .categoria:hover {
+.categoria:hover,
+.categoria.active {
   background-color: #e0f0ff;
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+
+/* Ranking */
+.ranking-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.ranking-cards .card.destaque {
+  background: linear-gradient(135deg, #0077cc, #005fa3);
+  color: white;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 300px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.ranking-cards .card.destaque:hover {
+  transform: translateY(-8px);
+}
+
+.ranking-cards .card.destaque h3 {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.ranking-cards .card.destaque p {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.ranking-cards .card.destaque button.botao {
+  background: white;
+  color: var(--primary);
+  font-weight: 700;
+  padding: 12px 24px;
+}
+
+.ranking-cards .card.destaque button.botao:hover {
+  background: #e0f0ff;
+}
+
+/* Destaques */
+.destaques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--white);
+  padding: 28px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+  text-align: center;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.card p {
+  font-weight: 500;
+  margin-bottom: 16px;
 }
 
 /* Cadastro */
 .cadastro {
-  padding: 40px 20px;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 50px 30px;
   text-align: center;
-  background-color: var(--light-gray);
+  box-shadow: var(--shadow);
 }
 
 .cadastro p {
-  margin-bottom: 15px;
-  font-size: 1.1em;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
 }
 
 /* Rodapé */
 footer {
-  background-color: var(--light-gray);
+  background: #f1f3f6;
   text-align: center;
-  padding: 30px 20px;
-  font-size: 0.9em;
+  padding: 30px;
+  font-size: 0.95rem;
   color: #555;
+  border-top: 1px solid #ddd;
 }
 
 footer a {
-  color: var(--primary-color);
-  margin: 0 15px;
+  color: var(--primary);
+  margin: 0 10px;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
 footer a:hover {
-  color: var(--primary-hover);
   text-decoration: underline;
 }
 
-/* Responsividade básica */
-@media (max-width: 600px) {
-  .destaques .card, .categorias .categoria {
-    display: block;
-    width: 90%;
-    margin: 10px auto;
-  }
-
-  .busca input[type="text"] {
-    width: 100%;
-    margin-bottom: 10px;
-    margin-right: 0;
-  }
-
-  button.botao {
+@media (max-width: 768px) {
+  .busca input,
+  .botao {
     width: 100%;
   }
-}
 
-/* Formulário (se usar) */
-.formulario {
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: left;
-}
+  .categorias {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.formulario input,
-.formulario textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  font-size: 1em;
-}
-
-.formulario label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
+  .ranking-cards {
+    flex-direction: column;
+    align-items: center;
+  }
 }
