@@ -11,7 +11,7 @@
 
 <header>
   <h1>ZapFreela ⚡</h1>
-  <p>Conectando quem faz com quem precisa — direto no WhatsApp</p>
+  <p>Conectando quem faz com quem precisa!</p>
 </header>
 
 <section class="busca">
@@ -29,61 +29,16 @@
   <div class="categoria" data-cat="montador">🛠️ Montador</div>
 </section>
 
-<section class="ranking">
-  <h2>Ranking dos Melhores Freelancers</h2>
-  <div class="ranking-cards">
-    <div class="card destaque" data-cat="eletricista">
-      <h3>1. Lucas - Eletricista</h3>
-      <p>⭐ 4.9 (32 avaliações)</p>
-      <button class="botao">Chamar no WhatsApp</button>
-    </div>
-    <div class="card destaque" data-cat="faxina">
-      <h3>2. Ana - Diarista</h3>
-      <p>⭐ 5.0 (28 avaliações)</p>
-      <button class="botao">Chamar no WhatsApp</button>
-    </div>
-    <div class="card destaque" data-cat="montador">
-      <h3>3. Pedro - Montador</h3>
-      <p>⭐ 4.7 (15 avaliações)</p>
-      <button class="botao">Chamar no WhatsApp</button>
-    </div>
-  </div>
-</section>
-
 <section class="destaques">
-  <h2>Todos os Freelancers</h2>
-
-  <div class="card" data-cat="eletricista">
-    <h3>Lucas - Eletricista</h3>
-    <p>⭐ 4.9 (32 avaliações)</p>
-    <button class="botao">Chamar no WhatsApp</button>
-  </div>
-
-  <div class="card" data-cat="faxina">
-    <h3>Ana - Diarista</h3>
-    <p>⭐ 5.0 (28 avaliações)</p>
-    <button class="botao">Chamar no WhatsApp</button>
-  </div>
-
-  <div class="card" data-cat="montador">
-    <h3>Pedro - Montador</h3>
-    <p>⭐ 4.7 (15 avaliações)</p>
-    <button class="botao">Chamar no WhatsApp</button>
-  </div>
-
-  <div class="card" data-cat="design">
-    <h3>Maria - Designer</h3>
-    <p>⭐ 4.8 (22 avaliações)</p>
-    <button class="botao">Chamar no WhatsApp</button>
-  </div>
-
+  <h2>Freelancers Encontrados</h2>
+  <div id="freelancer-list" class="freelancer-grid"></div>
   <p id="semResultado" style="display:none; margin-top:20px; color:#888;">Nenhum freelancer encontrado.</p>
 </section>
 
 <section class="cadastro">
-  <h2>É Freelancer? Cadastre-se!</h2>
-  <p>Crie seu perfil grátis e comece a receber clientes agora mesmo.</p>
-  <button class="botao">Quero me cadastrar</button>
+  <h2>Quer se cadastrar?</h2>
+  <p>Crie seu perfil como freelancer e comece a ser encontrado!</p>
+  <a href="cadastro.html" class="botao">Ir para Cadastro</a>
 </section>
 
 <footer>
@@ -93,46 +48,57 @@
 
 <script>
   const inputBusca = document.getElementById('inputBusca');
-  const cards = document.querySelectorAll('.destaques .card, .ranking-cards .card');
-  const semResultado = document.getElementById('semResultado');
   const categorias = document.querySelectorAll('.categoria');
-
+  const lista = document.getElementById('freelancer-list');
+  const semResultado = document.getElementById('semResultado');
   let categoriaAtiva = 'all';
 
-  function filtrarCards() {
-    const termo = inputBusca.value.toLowerCase().trim();
-    let encontrou = false;
+  async function carregarFreelancers() {
+    const busca = inputBusca.value.trim();
+    let url = `http://localhost:3000/freelancers?categoria=${categoriaAtiva}`;
+    if (busca) url += `&busca=${encodeURIComponent(busca)}`;
 
-    cards.forEach(card => {
-      const nome = card.querySelector('h3').textContent.toLowerCase();
-      const categoriaCard = card.dataset.cat;
+    const res = await fetch(url);
+    const freelancers = await res.json();
 
-      const matchCategoria = categoriaAtiva === 'all' || categoriaCard === categoriaAtiva;
-      const matchBusca = nome.includes(termo);
+    lista.innerHTML = '';
 
-      if (matchCategoria && matchBusca) {
-        card.style.display = 'block';
-        encontrou = true;
-      } else {
-        card.style.display = 'none';
-      }
+    if (freelancers.length === 0) {
+      semResultado.style.display = 'block';
+      return;
+    }
+
+    semResultado.style.display = 'none';
+
+    freelancers.forEach(f => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${f.nome} - ${capitalizar(f.categoria)}</h3>
+        <p>⭐ ${f.avaliacao.toFixed(1)} (${f.num_avaliacoes} avaliações)</p>
+        <p class="descricao">${f.descricao || ''}</p>
+        <button class="botao" onclick="window.open('https://wa.me/${f.telefone}', '_blank')">Chamar no WhatsApp</button>
+      `;
+      lista.appendChild(card);
     });
-
-    semResultado.style.display = encontrou ? 'none' : 'block';
   }
 
-  inputBusca.addEventListener('input', filtrarCards);
+  function capitalizar(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  inputBusca.addEventListener('input', carregarFreelancers);
 
   categorias.forEach(cat => {
     cat.addEventListener('click', () => {
       categorias.forEach(c => c.classList.remove('active'));
       cat.classList.add('active');
       categoriaAtiva = cat.dataset.cat;
-      filtrarCards();
+      carregarFreelancers();
     });
   });
 
-  filtrarCards();
+  carregarFreelancers();
 </script>
 
 </body>

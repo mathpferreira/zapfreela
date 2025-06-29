@@ -49,20 +49,17 @@ section {
 }
 
 h2 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   color: var(--primary);
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Busca */
 .busca {
   text-align: center;
   max-width: 600px;
-  margin: 0 auto 60px auto;
+  margin: 0 auto 40px auto;
 }
 
 .busca input {
@@ -99,20 +96,19 @@ h2 {
   background: var(--primary-dark);
 }
 
-/* Categorias */
 .categorias {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .categoria {
   background: var(--white);
   border: 1px solid var(--light-gray);
   border-radius: var(--border-radius);
-  padding: 18px 26px;
+  padding: 16px 24px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
@@ -127,53 +123,7 @@ h2 {
   transform: translateY(-4px);
 }
 
-/* Ranking */
-.ranking-cards {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-bottom: 60px;
-}
-
-.ranking-cards .card.destaque {
-  background: linear-gradient(135deg, #0077cc, #005fa3);
-  color: white;
-  padding: 30px;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  width: 300px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.ranking-cards .card.destaque:hover {
-  transform: translateY(-8px);
-}
-
-.ranking-cards .card.destaque h3 {
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.ranking-cards .card.destaque p {
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.ranking-cards .card.destaque button.botao {
-  background: white;
-  color: var(--primary);
-  font-weight: 700;
-  padding: 12px 24px;
-}
-
-.ranking-cards .card.destaque button.botao:hover {
-  background: #e0f0ff;
-}
-
-/* Destaques */
-.destaques {
+.freelancer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 30px;
@@ -201,24 +151,47 @@ h2 {
 
 .card p {
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-/* Cadastro */
+.card .descricao {
+  font-size: 0.95rem;
+  color: #555;
+}
+
 .cadastro {
   background: var(--white);
   border-radius: var(--border-radius);
   padding: 50px 30px;
   text-align: center;
   box-shadow: var(--shadow);
+  max-width: 600px;
+  margin: auto;
 }
 
-.cadastro p {
-  font-size: 1.1rem;
-  margin-bottom: 25px;
+.cadastro form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-/* Rodapé */
+.cadastro input,
+.cadastro textarea,
+.cadastro select {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.cadastro textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
 footer {
   background: #f1f3f6;
   text-align: center;
@@ -240,7 +213,8 @@ footer a:hover {
 
 @media (max-width: 768px) {
   .busca input,
-  .botao {
+  .botao,
+  .cadastro form {
     width: 100%;
   }
 
@@ -249,8 +223,11 @@ footer a:hover {
     align-items: center;
   }
 
-  .ranking-cards {
-    flex-direction: column;
-    align-items: center;
+  .freelancer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 20px;
   }
 }
