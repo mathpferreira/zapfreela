@@ -1,15 +1,16 @@
+/* === Variáveis Globais === */
 :root {
   --primary: #0077cc;
   --primary-dark: #005fa3;
   --background: #f5f7fa;
   --text: #2d2d2d;
   --white: #ffffff;
-  --light-gray: #e1e8ed;
   --border-radius: 10px;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   --transition: all 0.3s ease-in-out;
 }
 
+/* === Reset e base === */
 * {
   margin: 0;
   padding: 0;
@@ -23,120 +24,147 @@ body {
   line-height: 1.6;
 }
 
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* === Header === */
 header {
   background: var(--primary);
   color: var(--white);
-  padding: 50px 20px;
-  text-align: center;
+  padding: 20px 0;
   box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-header h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+header a#elLogo img {
+  height: 40px;
 }
 
 header p {
-  font-size: 1.2rem;
-  opacity: 0.95;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-left: 15px;
 }
 
-section {
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: auto;
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-h2 {
-  font-size: 2.2rem;
-  text-align: center;
-  margin-bottom: 40px;
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.busca {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 40px auto;
-}
-
-.busca input {
-  width: 100%;
-  padding: 16px;
-  border: 1px solid #ccc;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-}
-
-.busca input:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-.botao {
-  background: var(--primary);
+.menu a {
   color: var(--white);
-  padding: 14px 32px;
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
+  text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+  color: var(--primary-dark);
+}
+
+/* === Busca Avançada === */
+.busca-avancada {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.busca-avancada input[type="text"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
   box-shadow: var(--shadow);
+  font-size: 1rem;
+  margin-bottom: 20px;
   transition: var(--transition);
-  margin-top: 15px;
-  display: inline-block;
 }
 
-.botao:hover {
-  background: var(--primary-dark);
+.busca-avancada input[type="text"]:focus {
+  border-color: var(--primary);
+  outline: none;
 }
 
-.categorias {
+/* === Filtros === */
+.filtros {
+  margin-bottom: 20px;
+}
+
+.filtro-categorias {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 40px;
+  gap: 10px;
 }
 
 .categoria {
   background: var(--white);
-  border: 1px solid var(--light-gray);
+  border: 1px solid #ccc;
   border-radius: var(--border-radius);
-  padding: 16px 24px;
+  padding: 10px 20px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: var(--shadow);
-  font-size: 1rem;
   user-select: none;
 }
 
-.categoria:hover,
-.categoria.active {
+.categoria.active,
+.categoria:hover {
   background-color: #e0f0ff;
-  transform: translateY(-4px);
+  border-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* === Botões === */
+.botao, button.botao {
+  background: var(--primary);
+  color: var(--white);
+  padding: 12px 40px;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  user-select: none;
+}
+
+.botao:hover, button.botao:hover {
+  background: var(--primary-dark);
+}
+
+/* === Resultados e Cards === */
+.resultados {
+  margin-top: 60px;
+  text-align: center;
 }
 
 .freelancer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
+  margin-top: 20px;
 }
 
 .card {
   background: var(--white);
-  padding: 28px;
+  padding: 25px;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   transition: transform 0.3s ease;
   text-align: center;
-  cursor: default;
 }
 
 .card:hover {
@@ -145,89 +173,224 @@ h2 {
 
 .card h3 {
   color: var(--primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 1.3rem;
 }
 
 .card p {
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .card .descricao {
   font-size: 0.95rem;
   color: #555;
+  min-height: 60px;
 }
 
+/* === Paginação === */
+.paginacao {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-weight: 600;
+}
+
+.botao-paginacao {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 8px 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.botao-paginacao:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.botao-paginacao:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+/* === Cadastro === */
 .cadastro {
   background: var(--white);
   border-radius: var(--border-radius);
-  padding: 50px 30px;
-  text-align: center;
+  padding: 40px 30px;
   box-shadow: var(--shadow);
   max-width: 600px;
-  margin: auto;
+  margin: 80px auto 40px;
+  text-align: center;
+}
+
+.cadastro h2 {
+  margin-bottom: 25px;
+  color: var(--primary);
 }
 
 .cadastro form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: 20px;
 }
 
-.cadastro input,
-.cadastro textarea,
-.cadastro select {
-  padding: 14px;
-  border: 1px solid #ccc;
+/* Inputs, selects e textarea com padding unificado e fonte uniforme */
+.cadastro input[type="text"],
+.cadastro input[type="tel"],
+.cadastro input[type="email"],
+.cadastro input[type="password"],
+.cadastro select,
+.cadastro textarea {
+  padding: 12px 15px;
   border-radius: var(--border-radius);
+  border: 1px solid #ccc;
   font-size: 1rem;
   box-shadow: var(--shadow);
   transition: var(--transition);
-}
-
-.cadastro textarea {
+  font-family: 'Inter', sans-serif;
   resize: vertical;
-  min-height: 80px;
 }
 
+.cadastro input:focus,
+.cadastro select:focus,
+.cadastro textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Placeholder para todos inputs e textarea */
+.cadastro input::placeholder,
+.cadastro select::placeholder,
+.cadastro textarea::placeholder {
+  font-size: 0.9rem;
+  color: #000000;
+  opacity: 0.9;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  font-style: unset;
+}
+
+/* Botão de cadastro */
+.cadastro .botao {
+  padding: 14px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+/* Mensagem de feedback do cadastro */
+#mensagemCadastro {
+  font-weight: 600;
+  min-height: 1.8em;
+  margin-top: 20px;
+  color: var(--primary-dark);
+}
+
+/* === Footer === */
 footer {
   background: #f1f3f6;
   text-align: center;
-  padding: 30px;
+  padding: 30px 15px;
   font-size: 0.95rem;
   color: #555;
   border-top: 1px solid #ddd;
+  margin-top: 80px;
 }
 
 footer a {
   color: var(--primary);
   margin: 0 10px;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 footer a:hover {
   text-decoration: underline;
+  color: var(--primary-dark);
 }
 
+/* === Responsivo === */
 @media (max-width: 768px) {
-  .busca input,
-  .botao,
-  .cadastro form {
-    width: 100%;
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
   }
 
-  .categorias {
+  .menu {
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
+  }
+
+  .filtro-categorias {
+    flex-direction: column;
   }
 
   .freelancer-grid {
     grid-template-columns: 1fr;
   }
 
-  .card {
-    padding: 20px;
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
   }
+}
+
+/* === Seção Cadastro alternativa === */
+section.cadastro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  margin-top: 80px;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  max-width: 700px;
+}
+
+section.cadastro h2 {
+  margin-bottom: 10px;
+}
+
+section.cadastro p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+section.cadastro .botao {
+  padding: 14px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* === Placeholder e padding específicos para textarea "Fale mais de você" dentro de #camposFreelancer === */
+#camposFreelancer textarea {
+  padding: 12px 15px;         /* Alinha placeholder e texto digitado */
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  resize: vertical;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+#camposFreelancer textarea::placeholder {
+  font-size: 0.75rem;         /* Placeholder menor */
+  color: #999999;             /* Cor suave */
+  font-style: italic;         /* Itálico */
+  opacity: 0.8;               /* Transparência suave */
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
 }

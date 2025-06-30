@@ -6,100 +6,75 @@
   <title>ZapFreela - Plataforma de Freelancers</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
 
 <header>
-  <h1>ZapFreela ⚡</h1>
-  <p>Conectando quem faz com quem precisa!</p>
+  <div class="container header-content">
+    <h1 class="logo">ZapFreela ⚡</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#cadastro">Cadastro</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<section class="busca">
-  <h2>Buscar Freelancer</h2>
-  <input type="text" id="inputBusca" placeholder="Digite sua cidade ou serviço..." autocomplete="off" />
-</section>
+<main class="container">
+  <section class="busca-avancada">
+    <h2>Buscar Freelancers</h2>
+    <input type="text" id="inputBusca" placeholder="Digite cidade, serviço ou nome..." autocomplete="off" />
+    <div class="filtros">
+      <div class="filtro-categorias">
+        <button class="categoria active" data-cat="all">Todas</button>
+        <button class="categoria" data-cat="eletricista">🔧 Eletricista</button>
+        <button class="categoria" data-cat="faxina">🧹 Faxina</button>
+        <button class="categoria" data-cat="aulas">🎓 Aulas Particulares</button>
+        <button class="categoria" data-cat="tecnologia">💻 Tecnologia</button>
+        <button class="categoria" data-cat="montador">🛠️ Montador</button>
+      </div>
+      <!-- Pode adicionar filtros extras aqui -->
+    </div>
+    <button id="btnBuscar" class="botao">Buscar</button>
+  </section>
 
-<section class="categorias">
-  <h2>Encontre por Categoria</h2>
-  <div class="categoria active" data-cat="all">Todas</div>
-  <div class="categoria" data-cat="eletricista">🔧 Eletricista</div>
-  <div class="categoria" data-cat="faxina">🧹 Faxina</div>
-  <div class="categoria" data-cat="aulas">🎓 Aulas Particulares</div>
-  <div class="categoria" data-cat="design">🎨 Design Gráfico</div>
-  <div class="categoria" data-cat="montador">🛠️ Montador</div>
-</section>
+  <section class="resultados">
+    <h2 id="titulo-lista">Freelancers Encontrados</h2>
+    <div id="freelancer-list" class="freelancer-grid"></div>
 
-<section class="destaques">
-  <h2>Freelancers Encontrados</h2>
-  <div id="freelancer-list" class="freelancer-grid"></div>
-  <p id="semResultado" style="display:none; margin-top:20px; color:#888;">Nenhum freelancer encontrado.</p>
-</section>
+    <div class="paginacao" id="paginacao" style="display:none;">
+      <button id="btnPrev" class="botao-paginacao" disabled>Anterior</button>
+      <span id="paginaAtual">1</span> / <span id="totalPaginas">1</span>
+      <button id="btnNext" class="botao-paginacao" disabled>Próximo</button>
+    </div>
 
-<section class="cadastro">
-  <h2>Quer se cadastrar?</h2>
-  <p>Crie seu perfil como freelancer e comece a ser encontrado!</p>
-  <a href="cadastro.html" class="botao">Ir para Cadastro</a>
-</section>
+    <p id="semResultado" style="display:none; margin-top:20px; color:#888;">
+      Nenhum freelancer encontrado.
+    </p>
+    <p id="loading" style="display:none; margin-top:20px; color:#0077cc;">
+      Carregando...
+    </p>
+    <p id="erro" style="display:none; margin-top:20px; color:#cc0000;">
+      Erro ao carregar freelancers. Tente novamente.
+    </p>
+  </section>
 
-<footer>
+  <section id="cadastro" class="cadastro">
+    <h2>Quer se cadastrar?</h2>
+    <p>Crie seu perfil como freelancer e comece a ser encontrado!</p>
+    <a href="cadastro.html" class="botao">Ir para Cadastro</a>
+  </section>
+</main>
+
+<footer id="contato">
   <p>&copy; 2025 ZapFreela. Todos os direitos reservados.</p>
   <p><a href="#">Instagram</a> | <a href="#">Termos</a> | <a href="#">Contato</a></p>
 </footer>
 
-<script>
-  const inputBusca = document.getElementById('inputBusca');
-  const categorias = document.querySelectorAll('.categoria');
-  const lista = document.getElementById('freelancer-list');
-  const semResultado = document.getElementById('semResultado');
-  let categoriaAtiva = 'all';
-
-  async function carregarFreelancers() {
-    const busca = inputBusca.value.trim();
-    let url = `http://localhost:3000/freelancers?categoria=${categoriaAtiva}`;
-    if (busca) url += `&busca=${encodeURIComponent(busca)}`;
-
-    const res = await fetch(url);
-    const freelancers = await res.json();
-
-    lista.innerHTML = '';
-
-    if (freelancers.length === 0) {
-      semResultado.style.display = 'block';
-      return;
-    }
-
-    semResultado.style.display = 'none';
-
-    freelancers.forEach(f => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <h3>${f.nome} - ${capitalizar(f.categoria)}</h3>
-        <p>⭐ ${f.avaliacao.toFixed(1)} (${f.num_avaliacoes} avaliações)</p>
-        <p class="descricao">${f.descricao || ''}</p>
-        <button class="botao" onclick="window.open('https://wa.me/${f.telefone}', '_blank')">Chamar no WhatsApp</button>
-      `;
-      lista.appendChild(card);
-    });
-  }
-
-  function capitalizar(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  inputBusca.addEventListener('input', carregarFreelancers);
-
-  categorias.forEach(cat => {
-    cat.addEventListener('click', () => {
-      categorias.forEach(c => c.classList.remove('active'));
-      cat.classList.add('active');
-      categoriaAtiva = cat.dataset.cat;
-      carregarFreelancers();
-    });
-  });
-
-  carregarFreelancers();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
